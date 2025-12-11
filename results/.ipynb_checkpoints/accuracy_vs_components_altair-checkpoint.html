@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    #vis.vega-embed {
+      width: 100%;
+      display: flex;
+    }
+
+    #vis.vega-embed details,
+    #vis.vega-embed details summary {
+      position: relative;
+    }
+  </style>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega-lite@5.17.0"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+</head>
+<body>
+  <div id="vis"></div>
+  <script>
+    (function(vegaEmbed) {
+      var spec = {"config": {"view": {"continuousWidth": 300, "continuousHeight": 300}, "axis": {"grid": true, "gridOpacity": 0.3}}, "layer": [{"mark": {"type": "circle", "color": "#FF6B6B", "opacity": 0.9, "size": 200}, "encoding": {"tooltip": [{"field": "components", "type": "quantitative"}, {"field": "accuracy", "type": "quantitative"}], "x": {"axis": {"labelFontSize": 12, "titleFontSize": 13, "values": [10, 20, 30, 40, 50]}, "field": "components", "scale": {"domain": [5, 55]}, "title": "Number of Principal Components", "type": "quantitative"}, "y": {"axis": {"labelFontSize": 12, "titleFontSize": 13}, "field": "accuracy", "scale": {"domain": [94, 99]}, "title": "Classification Accuracy (%)", "type": "quantitative"}}}, {"mark": {"type": "text", "align": "center", "baseline": "bottom", "dy": -10, "fontSize": 12, "fontWeight": "bold"}, "encoding": {"text": {"field": "label", "type": "nominal"}, "x": {"axis": {"labelFontSize": 12, "titleFontSize": 13, "values": [10, 20, 30, 40, 50]}, "field": "components", "scale": {"domain": [5, 55]}, "title": "Number of Principal Components", "type": "quantitative"}, "y": {"axis": {"labelFontSize": 12, "titleFontSize": 13}, "field": "accuracy", "scale": {"domain": [94, 99]}, "title": "Classification Accuracy (%)", "type": "quantitative"}}}], "data": {"name": "data-2965f94f7ffbea750399d860929b1cf5"}, "height": 400, "title": {"text": "PCA Classification: Optimal Components Analysis", "fontSize": 16, "fontWeight": "bold"}, "width": 600, "$schema": "https://vega.github.io/schema/vega-lite/v5.17.0.json", "datasets": {"data-2965f94f7ffbea750399d860929b1cf5": [{"components": 10, "accuracy": 98.03, "label": "98.03%"}, {"components": 20, "accuracy": 95.39, "label": "95.39%"}, {"components": 50, "accuracy": 95.39, "label": "95.39%"}]}};
+      var embedOpt = {"mode": "vega-lite"};
+
+      function showError(el, error){
+          el.innerHTML = ('<div style="color:red;">'
+                          + '<p>JavaScript Error: ' + error.message + '</p>'
+                          + "<p>This usually means there's a typo in your chart specification. "
+                          + "See the javascript console for the full traceback.</p>"
+                          + '</div>');
+          throw error;
+      }
+      const el = document.getElementById('vis');
+      vegaEmbed("#vis", spec, embedOpt)
+        .catch(error => showError(el, error));
+    })(vegaEmbed);
+
+  </script>
+</body>
+</html>
